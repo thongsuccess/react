@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Index extends Component {
+export default class DetailBook extends Component {
     render() {
-        console.log(this.props,'pageHome');
-        
         return (
             <div>
-                index.js
+                DetailBook.js
             </div>
         )
     }

@@ -3,22 +3,37 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
-    Redirect
+    Redirect,
+    Link
 } from 'react-router-dom';
 import Routers from './routers/routerMap';
 import NotFound from './container/notfound';
 
 export default class index extends Component {
+
     render() {
         console.log(Routers,'动态路由配置');
-        
         return (
             <Router>
                 <div>
+                    <div>
+                        <Link to='/'>首页</Link>
+                        <Link to='/list'>列表</Link>
+                        <Link to='/detail'>详情</Link>
+                        <Link to='/wode'>我的</Link>
+                    </div>
                     <Switch>
                        {
-                            Routers.map((item,index)=>{
-                                return <Route key={index} path={item.path} exact render={props => <item.component {...props} />}/>
+                            Routers.map((item,index) => {
+                               if(item.exact) {
+                                   return <Route exact path={item.path} key={index} render={props=>{
+                                      return <item.component {...props} routes={item.children} />
+                                   }} />
+                               } else {
+                                   return <Route path={item.path} key={index} render={props => {
+                                       return <item.component {...props} routes={item.children} />
+                                   }} />
+                               }
                             })
                        }
                        <Route component={NotFound} />
