@@ -15,6 +15,8 @@ export default class Detail extends Component {
     render() {
         return (
             <div>
+                <Link to='/detail/'>详情22</Link>
+                <Link to='/detail/useradd2'>详情333</Link>
                 {
                     this.props.routes.map((item,index) => (
                         <Route key={index} exact path={item.path} component={item.component} />
